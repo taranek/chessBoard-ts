@@ -5,7 +5,7 @@ import ChessBoardModel from './domain/ChessBoardModel';
 
 const App: React.FC = () => {
   let board : ChessBoardModel = new ChessBoardModel(8);
-
+  
   return (
     <div className="App">
       <div style={{ margin:'auto', display:'flex'}}>

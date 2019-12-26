@@ -32,7 +32,7 @@ const ChessBoard: React.FC<ChessBoardProps> = ({boardModel}:ChessBoardProps) => 
       <FlexContainer className='chessBoard-container'>
         {boardModel.graph.nodes.map((node) =>(
           <SquareWrapper ref={squareRef}  key={String(JSON.stringify(node.cords)+'-container')}>
-            <Square cords={node.cords} key={String(JSON.stringify(node.cords))}/>
+            <Square cords={node.cords} key={String(JSON.stringify(node.cords))} />
           </SquareWrapper>)
         )}
       </FlexContainer>

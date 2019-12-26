@@ -8,7 +8,7 @@ type SquareProps = {
 const Square: React.FC<SquareProps> = ({cords}:SquareProps) =>{
   let isEven = (cords.x + cords.y)%2===0;
   let stylingClass = isEven ? 'square__even' : 'square__odd';
-  return <div className={`square ${stylingClass}`}>
+  return <div className={`square ${stylingClass}`} onClick={()=>{console.log(JSON.stringify(cords))}} >
      <img src={knight} alt="knight chess icon" />
   </div>
 }
