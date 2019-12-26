@@ -1,29 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import ChessBoard from './components/ChessBoard';
-import './App.css';
+import ChessBoard from './components/ChessBoard/ChessBoard';
+import './global.scss';
+import ChessBoardModel from './domain/ChessBoardModel';
 
 const App: React.FC = () => {
+  let board : ChessBoardModel = new ChessBoardModel(8);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        
-      </header>
-      <ChessBoard>
-        
-      </ChessBoard>
+      <div style={{ margin:'auto', display:'flex'}}>
+        <button className='btn-primary' onClick={() =>{alert('kaczki')}}>Hello</button>
+        <input type='number'></input>
+        <button className='btn-secondary'>World</button>
+      </div>
+      <h1>Hello saas!</h1>
+      <ChessBoard boardModel={board} />
     </div>
   );
 }

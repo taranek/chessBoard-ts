@@ -1,0 +1,80 @@
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700italic,400,700);
+
+// Font Variables
+$roboto-slab: 'Roboto Slab', serif;   
+$open-sans: 'Open Sans', sans-serif;
+
+$primaryColor: #4C51C6;
+$secondaryColor: #FD830D;
+$accentColor: #607ff2;
+$lightAccentColor: #8da3f3;
+$lightColor: #e9f4ff;
+$secondaryLight: rgb(255, 196, 142);
+$white:  #fafdff;
+html,body{
+  background-color:$lightColor;
+  font-family:$open-sans;
+}
+h1 {
+  color: $primaryColor;
+}
+.App{
+  display:flex;
+  flex-wrap: wrap;
+  text-align: center;
+  flex-direction: column;
+}
+button{
+  display: block;
+  color: $white;
+  margin: 0.5em;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 1.2em;
+  transition: background-position 0.3s;
+  transition: color, 0.3s;
+  transition: box-shadow, 0.3s;
+  background-size: 100% 202%;
+}
+button:hover{
+  background-position: 0 100%;
+  cursor: pointer;
+}
+.btn-primary{
+  text-shadow: 0px 0px 2em $lightAccentColor;
+  box-shadow: 0px 0px 0.2em $lightAccentColor;
+  border: 2px solid $primaryColor;
+	background-image: linear-gradient(to bottom, $lightAccentColor 50%, $white 50%);
+}
+.btn-primary:hover{
+  color: $primaryColor;
+  box-shadow: 0px 0px 0.7em $lightAccentColor;
+}
+
+.btn-secondary{
+  text-shadow: 0px 0px 2em $secondaryLight;
+  box-shadow: 0px 0px 0.2em $secondaryLight;
+  border: 2px solid $secondaryColor;
+	background-image: linear-gradient(to bottom, $secondaryLight 50%, $white 50%);
+}
+.btn-secondary:hover{
+  color: $secondaryColor;
+  box-shadow: 0px 0px 0.7em $secondaryLight;
+}
+input{
+  display: block;
+  border-radius: 10px;
+  border: 2px solid $primaryColor;
+  padding-left: 1em;
+  padding-right: 0.4em;
+  box-sizing: border-box;
+  font-weight: bold;
+  font-size: 1.2em;
+  background: $white;
+  color: $primaryColor;
+  margin: 0.5em;
+  height:2em;
+  width:4em;
+  box-shadow: 0px 0px 0.2em $lightAccentColor;
+}

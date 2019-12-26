@@ -6,7 +6,7 @@ import Knight from "./Knight";
 
 
 export default function setup() {
-  let chessSize = 8;  
+  let chessSize = 4;  
   let xMove = 1;
   let yMove = 1;
   let knight = new Knight(xMove,yMove);
@@ -22,7 +22,6 @@ export default function setup() {
 function makeAllMoves(knight:Knight, fromNode:TreeNode, chessBoard:ChessBoardModel):void {
   makeMove({ x: knight.xMove, y: knight.yMove }, fromNode, chessBoard);
   makeMove({ x: -knight.xMove, y: knight.yMove }, fromNode, chessBoard);
-
   makeMove({ x: knight.xMove, y: -knight.yMove }, fromNode, chessBoard);
   makeMove({ x: -knight.xMove, y: -knight.yMove }, fromNode, chessBoard);
 }
