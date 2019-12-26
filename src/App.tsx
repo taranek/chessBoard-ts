@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
+import ChessBoard from './components/ChessBoard';
 import './App.css';
 
 const App: React.FC = () => {
@@ -18,7 +19,11 @@ const App: React.FC = () => {
         >
           Learn React
         </a>
+        
       </header>
+      <ChessBoard>
+        
+      </ChessBoard>
     </div>
   );
 }
