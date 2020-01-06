@@ -11,6 +11,7 @@ $lightAccentColor: #8da3f3;
 $lightColor: #e9f4ff;
 $secondaryLight: rgb(255, 196, 142);
 $white:  #fafdff;
+$grey:   #a5a5a5;
 html,body{
   background-color:$lightColor;
   font-family:$open-sans;
@@ -27,7 +28,7 @@ h1 {
 button{
   display: block;
   color: $white;
-  margin: 0.5em;
+  // margin: 0.5em;
   padding: 5px 15px;
   border-radius: 10px;
   font-weight: 700;
@@ -51,7 +52,18 @@ button:hover{
   color: $primaryColor;
   box-shadow: 0px 0px 0.7em $lightAccentColor;
 }
-
+button:disabled{
+  color:$white;
+  background: $grey;
+  background-color: $grey;
+  border: 2px solid $grey;
+}
+button:disabled:hover{
+  border: 2px solid $grey;
+  color:$white;
+  background: $grey;
+  background-color: $grey;
+}
 .btn-secondary{
   text-shadow: 0px 0px 2em $secondaryLight;
   box-shadow: 0px 0px 0.2em $secondaryLight;
@@ -73,8 +85,32 @@ input{
   font-size: 1.2em;
   background: $white;
   color: $primaryColor;
-  margin: 0.5em;
   height:2em;
   width:4em;
   box-shadow: 0px 0px 0.2em $lightAccentColor;
+}
+.settings-container{
+  border: 3px solid $primaryColor;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 0px 10px $lightAccentColor;
+  background-color:$white;
+  margin:15px auto;
+  display:flex;
+  width:100%;
+  flex-wrap:wrap;
+  padding: 1em;
+  color:$primaryColor;
+  font-weight: bold;
+  text-align: center;
+  display:flex;
+  justify-content:space-evenly;
+  align-items: center;
+  box-sizing: border-box;
+}
+.main-container{
+   margin:10px;
+   display:flex;
+   flex-direction:row;
+   justify-content:space-evenly;
 }

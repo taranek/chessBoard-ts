@@ -5,18 +5,12 @@ import ChessBoardModel from "./ChessBoardModel";
 import Knight from "./Knight";
 
 
-export default function setup() {
-  let chessSize = 4;  
-  let xMove = 1;
-  let yMove = 1;
-  let knight = new Knight(xMove,yMove);
-  let chessBoard = new ChessBoardModel(chessSize);
-  let graph = chessBoard.graph;  
-  graph.setStart( new Cords(0,0));
-  graph.setEnd(new Cords(chessSize-1,chessSize-1));
+export default async function setup(chessBoardSize: number,start:Cords,end:Cords, knight:Knight):Promise<Array<TreeNode>> {
   
-  BFS(chessBoard, knight);
-  console.log(graph);
+  let chessBoardModel = new ChessBoardModel(chessBoardSize);
+  chessBoardModel.graph.setStart(start);
+  chessBoardModel.graph.setEnd(end);
+  return await BFS(chessBoardModel, knight);
 }
 
 function makeAllMoves(knight:Knight, fromNode:TreeNode, chessBoard:ChessBoardModel):void {
@@ -45,7 +39,7 @@ function makeMove(moveCords:Cords, fromNode:TreeNode, chessBoard:ChessBoardModel
   }
 }
 
-function BFS(chessBoard:ChessBoardModel, knight:Knight) {
+async function BFS(chessBoard:ChessBoardModel, knight:Knight):Promise<Array<TreeNode>> {
   let queue = [];
   let end = chessBoard.graph.end;
   let start = chessBoard.graph.start;
@@ -57,12 +51,14 @@ function BFS(chessBoard:ChessBoardModel, knight:Knight) {
     if (node.cords === end.cords) {
       console.log('found!', node);
       console.log('With path:', node.getPath());
-      return;
+      return node.getPath();
     }
     makeAllMoves(knight, node,chessBoard)
-    console.log('Searching node:', node);
+    // console.log('Searching node:', node);
     traverseEdges(node,chessBoard.graph,queue);
   }
+  console.log('Couldnt find a proper path')
+  return [];
 }
 
 function traverseEdges(node:TreeNode,graph:Graph, queue:Array<TreeNode>){
