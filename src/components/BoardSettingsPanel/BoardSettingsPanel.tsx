@@ -1,7 +1,7 @@
 import React from 'react';
 import ChessBoardModel from 'domain/ChessBoardModel'
 import { connect, ConnectedProps } from 'react-redux'
-import {UPDATE_BOARD, PositionType} from 'store/system/types';
+import {UPDATE_BOARD, PositionType, UPDATE_SOLUTION_PATH} from 'store/system/types';
 import {Nullable} from 'generics/Nullable'
 import Cords from 'domain/Cords';
 import PositionSettings from 'components/PositionSettings/PositionSettings'
@@ -24,6 +24,9 @@ const mapDispatch = {
   updateBoard: (size:number) =>{
     let board = new ChessBoardModel(size);
     return {type:UPDATE_BOARD, payload:board};
+  },
+  updateSolutionPath: (solutionPath:Array<Cords>) =>{
+    return {type:UPDATE_SOLUTION_PATH, payload:solutionPath};
   }
 }
 const connector = connect(
@@ -43,6 +46,7 @@ let endPosition:Cords = new Cords(0,0);
   }
 
   return Solution(chessBoardSize,startPosition,endPosition,knight);
+  
 }
 
 const BoardSettingsPanel: React.FC<Props> = (props:Props) => {
@@ -50,6 +54,14 @@ const BoardSettingsPanel: React.FC<Props> = (props:Props) => {
   let boardModel:ChessBoardModel = props.boardModel;
   let start:Nullable<Cords> = props.start;
   let end:Nullable<Cords> = props.end;
+  async function handleClick(){
+    let solutionPath = await ProvideSolution(boardModel.size,start,end,knight);
+    let result :Cords[] = [];
+    solutionPath.forEach(x=>{
+        result.push(x.cords);
+    })
+    props.updateSolutionPath(result);
+  }
   return (
       <div style={{boxSizing: 'border-box'}}>
         <div className="settings-container">
@@ -58,14 +70,15 @@ const BoardSettingsPanel: React.FC<Props> = (props:Props) => {
           </span>
         <input 
           type='number'
+          min='2'
           defaultValue={props.boardModel.size}
           onChange = { (e) => { props.updateBoard(Number(e.target.value)) }}
         ></input>
         </div>
-        <PositionSettings name={PositionType.Start} position={props.start}></PositionSettings>
-        <PositionSettings name={PositionType.End} position={props.end}></PositionSettings>
+        <PositionSettings enableSetter={true} name={PositionType.Start} position={props.start}></PositionSettings>
+        <PositionSettings enableSetter={props.start!==null} name={PositionType.End} position={props.end}></PositionSettings>
         <KnightSettings></KnightSettings>
-        <button className="btn-primary" disabled={props.start===null || props.end ===null} onClick={()=>(ProvideSolution(boardModel.size,start,end,knight))}>Solve it!</button>
+        <button className="btn-primary" disabled={props.start===null || props.end ===null} onClick={()=>(handleClick())}>Solve it!</button>
       </div>
   );
 }

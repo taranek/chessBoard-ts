@@ -5,20 +5,24 @@ import './ChessBoard.scss';
 import styled from 'styled-components';
 import { connect, ConnectedProps } from 'react-redux'
 import useWindowSize from 'hooks/useWindowSize';
+import Cords from 'domain/Cords';
 
 // type ChessBoardProps = {
 //   boardModel: ChessBoardModel,
 // }
 type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & {
-  boardModel:ChessBoardModel
+  boardModel:ChessBoardModel,
+  solutionPath:Array<Cords>,
 }
 interface RootState {
-  boardModel:ChessBoardModel
+  boardModel:ChessBoardModel,
+  solutionPath:Array<Cords>,
 }
 
 const mapState = (state: RootState) => ({
   boardModel:state.boardModel,
+  solutionPath: state.solutionPath,
 })
 const mapDispatch = {
   logBoard : ()=>{console.log('props.boardModel.size')},
@@ -29,16 +33,18 @@ const connector = connect(
 )
 
 
-const ChessBoard: React.FC<Props> = ({boardModel}:Props) => {
+const ChessBoard: React.FC<Props> = (props:Props) => {
   const [squareHeight, setSquareHeight] = useState(100);
   const [windowWidth] = useWindowSize();
   const squareRef = useRef(document.createElement("div"));
+  const boardModel = props.boardModel;
+  const solutionPath = props.solutionPath;
   var width =0;
   useEffect(() =>{
     width = squareRef.current.offsetWidth;
     setSquareHeight(width);
   },
-  [boardModel, windowWidth])
+  [boardModel, windowWidth, solutionPath ])
 
   
   const SquareWrapper = styled.div`

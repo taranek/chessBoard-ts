@@ -18,6 +18,12 @@ function makeAllMoves(knight:Knight, fromNode:TreeNode, chessBoard:ChessBoardMod
   makeMove({ x: -knight.xMove, y: knight.yMove }, fromNode, chessBoard);
   makeMove({ x: knight.xMove, y: -knight.yMove }, fromNode, chessBoard);
   makeMove({ x: -knight.xMove, y: -knight.yMove }, fromNode, chessBoard);
+
+  makeMove({ x: knight.yMove, y: knight.xMove }, fromNode, chessBoard);
+  makeMove({ x: -knight.yMove, y: knight.xMove }, fromNode, chessBoard);
+  makeMove({ x: knight.yMove, y: -knight.xMove }, fromNode, chessBoard);
+  makeMove({ x: -knight.yMove, y: -knight.xMove }, fromNode, chessBoard);
+
 }
 
 function makeMove(moveCords:Cords, fromNode:TreeNode, chessBoard:ChessBoardModel) {

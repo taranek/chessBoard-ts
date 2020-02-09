@@ -11,6 +11,7 @@ type PropsFromRedux = ConnectedProps<typeof connector>
 type Props = PropsFromRedux & {
   position:Nullable<Cords>,
   name:PositionType;
+  enableSetter:boolean;
 }
 
 interface RootState {
@@ -58,7 +59,7 @@ const PositionSettings: React.FC<Props> = (props:Props) =>{
   return (
     <div className='settings-container'>
       {positionInfo}
-    <button className="btn-primary" onClick={setListener}> Set {name} position</button>
+    <button className="btn-primary" disabled = {!props.enableSetter} onClick={setListener}> Set {name} position</button>
     </div>
   )
 }

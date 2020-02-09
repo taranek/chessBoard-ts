@@ -10,11 +10,13 @@ export interface SystemState {
   start?:Nullable<Cords>,
   end?:Nullable<Cords>,
   positionListener?: Nullable<PositionType>,
+  solutionPath?:Array<Cords>
 }
 // src/store/system/types.ts
 export const UPDATE_SESSION = 'UPDATE_SESSION'
 export const UPDATE_KNIGHT = 'UPDATE_KNIGHT'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
+export const UPDATE_SOLUTION_PATH = 'UPDATE_SOLUTION_PATH'
 export const UPDATE_START_POSITION = 'UPDATE_START_POSITION'
 export const UPDATE_END_POSITION = 'UPDATE_END_POSITION'
 export const UPDATE_POSITION_LISTENER = 'UPDATE_POSITION_LISTENER'
@@ -48,5 +50,9 @@ interface UpdateEndPositionAction {
   type: typeof UPDATE_END_POSITION
   payload: Nullable<Cords>,
 }
+interface UpdateSolutionPath {
+  type: typeof UPDATE_SOLUTION_PATH
+  payload: Array<Cords>
+}
 export type SystemActionTypes = (UpdateSessionAction | UpdateBoardAction | UpdateKnightAction |
-                                 UpdateStartPositionAction | UpdateEndPositionAction | UpdatePositionListener)
+                                 UpdateStartPositionAction | UpdateEndPositionAction | UpdatePositionListener | UpdateSolutionPath)
