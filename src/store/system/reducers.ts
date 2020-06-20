@@ -1,16 +1,14 @@
-// src/store/system/reducers.ts
 import { SystemState, SystemActionTypes, UPDATE_BOARD, UPDATE_START_POSITION, UPDATE_POSITION_LISTENER, UPDATE_END_POSITION, UPDATE_KNIGHT, UPDATE_SOLUTION_PATH } from './types'
 import Knight from 'domain/Knight';
 import ChessBoardModel from 'domain/ChessBoardModel';
-import Cords from 'domain/Cords';
 
 const initialState: SystemState = {
-  knight:new Knight(1,1),
+  knight: new Knight(1, 1),
   boardModel: new ChessBoardModel(5),
-  start:null,
-  end:null,
-  positionListener:null,
-  solutionPath:[],
+  start: null,
+  end: null,
+  positionListener: null,
+  solutionPath: [],
 }
 export function systemReducer(
   state = initialState,
@@ -23,7 +21,7 @@ export function systemReducer(
         boardModel: action.payload,
       }
     }
-    case UPDATE_START_POSITION: {      
+    case UPDATE_START_POSITION: {
       return {
         ...state,
         start: action.payload,
