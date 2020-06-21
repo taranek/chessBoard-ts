@@ -1,8 +1,8 @@
 import { createStore } from "redux";
-import { systemReducer } from "./system/reducers";
+import { mainReducer } from "./system/reducers";
 
 
-const rootReducer = systemReducer;
+const rootReducer = mainReducer;
 
 export type AppState = ReturnType<typeof rootReducer>;
 
