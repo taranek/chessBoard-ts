@@ -1,36 +1,9 @@
 import React, { useRef, useEffect, useState } from 'react';
-import ChessBoardModel from 'domain/ChessBoardModel'
 import Square from 'components/Square/Square';
 import './ChessBoard.scss';
-import styled from 'styled-components';
-import { connect, ConnectedProps } from 'react-redux'
 import useWindowSize from 'hooks/useWindowSize';
-import Cords from 'domain/Cords';
-
-// type ChessBoardProps = {
-//   boardModel: ChessBoardModel,
-// }
-type PropsFromRedux = ConnectedProps<typeof connector>
-type Props = PropsFromRedux & {
-  boardModel: ChessBoardModel,
-  solutionPath: Array<Cords>,
-}
-interface RootState {
-  boardModel: ChessBoardModel,
-  solutionPath: Array<Cords>,
-}
-
-const mapState = (state: RootState) => ({
-  boardModel: state.boardModel,
-  solutionPath: state.solutionPath,
-})
-const mapDispatch = {
-  logBoard: () => { console.log('props.boardModel.size') },
-}
-const connector = connect(
-  mapState,
-  mapDispatch
-)
+import { SquareWrapper } from 'components/Square/Square.styles';
+import { Props, connector } from './ChessBoard.types';
 
 
 const ChessBoard: React.FC<Props> = (props: Props) => {
@@ -47,14 +20,10 @@ const ChessBoard: React.FC<Props> = (props: Props) => {
     [boardModel, windowWidth, solutionPath])
 
 
-  const SquareWrapper = styled.div`
-    height:${squareHeight}px;
-    flex-basis:${100 / boardModel.size}%`;
-
   return (
     <div className='chessBoard-container'>
       {boardModel.graph.nodes.map((node) => (
-        <SquareWrapper ref={squareRef} key={String(JSON.stringify(node.cords) + '-container')}>
+        <SquareWrapper ref={squareRef} key={String(JSON.stringify(node.cords) + '-container')} boardSize={boardModel.size} squareHeight={squareHeight}>
           <Square cords={node.cords} key={String(JSON.stringify(node.cords))} />
         </SquareWrapper>)
       )}

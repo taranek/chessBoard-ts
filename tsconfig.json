@@ -1,5 +1,5 @@
 {
-  "compilerOptions": {    
+  "compilerOptions": {
     "baseUrl": "src",
     "target": "es5",
     "lib": [
@@ -21,6 +21,7 @@
     "jsx": "react"
   },
   "include": [
-    "src", "jsconfig.json"
+    "src",
+    "jsconfig.json"
   ]
 }
