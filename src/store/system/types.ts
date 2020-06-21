@@ -1,18 +1,17 @@
 import Knight from "domain/Knight"
 import Cords from 'domain/Cords'
 import ChessBoardModel from "domain/ChessBoardModel"
-import {Nullable} from 'generics/Nullable'
+import { Nullable } from 'generics/Nullable'
 
-// src/store/system/types.ts
-export interface SystemState {
-  boardModel:ChessBoardModel,
-  knight:Knight,
-  start?:Nullable<Cords>,
-  end?:Nullable<Cords>,
+export interface AppState {
+  boardModel: ChessBoardModel,
+  knight: Knight,
+  start?: Nullable<Cords>,
+  end?: Nullable<Cords>,
   positionListener?: Nullable<PositionType>,
-  solutionPath?:Array<Cords>
+  solutionPath?: Array<Cords>
 }
-// src/store/system/types.ts
+
 export const UPDATE_SESSION = 'UPDATE_SESSION'
 export const UPDATE_KNIGHT = 'UPDATE_KNIGHT'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
@@ -21,18 +20,18 @@ export const UPDATE_START_POSITION = 'UPDATE_START_POSITION'
 export const UPDATE_END_POSITION = 'UPDATE_END_POSITION'
 export const UPDATE_POSITION_LISTENER = 'UPDATE_POSITION_LISTENER'
 
-export enum PositionType{
+export enum PositionType {
   Start,
   End
 }
 
-interface UpdatePositionListener{
+interface UpdatePositionListener {
   type: typeof UPDATE_POSITION_LISTENER,
-  payload:Nullable<PositionType>,
+  payload: Nullable<PositionType>,
 }
 interface UpdateSessionAction {
   type: typeof UPDATE_SESSION
-  payload: SystemState
+  payload: AppState
 }
 interface UpdateBoardAction {
   type: typeof UPDATE_BOARD
@@ -54,5 +53,5 @@ interface UpdateSolutionPath {
   type: typeof UPDATE_SOLUTION_PATH
   payload: Array<Cords>
 }
-export type SystemActionTypes = (UpdateSessionAction | UpdateBoardAction | UpdateKnightAction |
-                                 UpdateStartPositionAction | UpdateEndPositionAction | UpdatePositionListener | UpdateSolutionPath)
+export type AppActionTypes = (UpdateSessionAction | UpdateBoardAction | UpdateKnightAction |
+  UpdateStartPositionAction | UpdateEndPositionAction | UpdatePositionListener | UpdateSolutionPath)

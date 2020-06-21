@@ -1,8 +1,8 @@
-import { SystemState, SystemActionTypes, UPDATE_BOARD, UPDATE_START_POSITION, UPDATE_POSITION_LISTENER, UPDATE_END_POSITION, UPDATE_KNIGHT, UPDATE_SOLUTION_PATH } from './types'
+import { AppState, AppActionTypes, UPDATE_BOARD, UPDATE_START_POSITION, UPDATE_POSITION_LISTENER, UPDATE_END_POSITION, UPDATE_KNIGHT, UPDATE_SOLUTION_PATH } from './types'
 import Knight from 'domain/Knight';
 import ChessBoardModel from 'domain/ChessBoardModel';
 
-const initialState: SystemState = {
+const initialState: AppState = {
   knight: new Knight(1, 1),
   boardModel: new ChessBoardModel(5),
   start: null,
@@ -10,10 +10,10 @@ const initialState: SystemState = {
   positionListener: null,
   solutionPath: [],
 }
-export function systemReducer(
+export function mainReducer(
   state = initialState,
-  action: SystemActionTypes
-): SystemState {
+  action: AppActionTypes
+): AppState {
   switch (action.type) {
     case UPDATE_BOARD: {
       return {
