@@ -7,9 +7,7 @@ import Solution from 'domain/Solution'
 import Knight from 'domain/Knight';
 import KnightSettings from 'components/KnightSettings/KnightSettings';
 import { Form, Field } from 'react-final-form';
-import { useWorker, WORKER_STATUS } from "@koale/useworker";
 import { connector, Props } from './BoardsSettingsPanel.types';
-import TreeNode from 'domain/TreeNode';
 
 const ProvideSolution = (chessBoardSize: number, start: Nullable<Cords>, end: Nullable<Cords>, knight: Knight) => {
   let startPosition: Cords = new Cords(0, 0);

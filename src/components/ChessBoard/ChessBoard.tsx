@@ -12,12 +12,11 @@ const ChessBoard: React.FC<Props> = (props: Props) => {
   const squareRef = useRef(document.createElement("div"));
   const boardModel = props.boardModel;
   const solutionPath = props.solutionPath;
-  var width = 0;
   useEffect(() => {
-    width = squareRef.current.offsetWidth;
+    const width = squareRef.current.offsetWidth;
     setSquareHeight(width);
   },
-    [boardModel, windowWidth, solutionPath])
+    [boardModel, windowWidth, solutionPath, squareRef.current.offsetWidth])
 
 
   return (
