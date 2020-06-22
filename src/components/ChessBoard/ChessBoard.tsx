@@ -18,13 +18,13 @@ const ChessBoard: React.FC<Props> = (props: Props) => {
       setSquareHeight(width);
     }
   },
-    [boardModel, windowWidth, solutionPath, squareRef.current.offsetWidth])
+    [boardModel, windowWidth, solutionPath, squareRef])
 
 
   return (
     <div className='chessBoard-container'>
-      {boardModel.graph.nodes.map((node) => (
-        <SquareWrapper ref={squareRef} key={String(JSON.stringify(node.cords) + '-container')} boardSize={boardModel.size} squareHeight={squareHeight}>
+      {boardModel.graph.nodes.map((node, index) => (
+        <SquareWrapper ref={index === 0 ? squareRef : null} key={String(JSON.stringify(node.cords) + '-container')} boardSize={boardModel.size} squareHeight={squareHeight}>
           <Square cords={node.cords} key={String(JSON.stringify(node.cords))} />
         </SquareWrapper>)
       )}
