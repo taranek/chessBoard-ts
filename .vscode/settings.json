@@ -1,0 +1,8 @@
+{
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}",
+    ".vscode{,/**}"
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/f08799e1-f861-4902-affa-e20a1b0967fc/resourceGroups/Chess/providers/Microsoft.Web/sites/TaranekChessKnight",
+  "appService.deploySubpath": "."
+}
