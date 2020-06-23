@@ -2,6 +2,11 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Demo
 Test env:
 https://taranekchessknight.azurewebsites.net/
+
+## Todos
+ - use worker in order unlock the main thread
+ - implement final form to handle inputs in sequential order
+ - improve UX
 ## Available Scripts
 
 In the project directory, you can run:
