@@ -1,18 +1,19 @@
-import React, { useRef, useEffect, useState } from 'react';
+import * as React from 'react';
 import Square from 'components/Square/Square';
 import './ChessBoard.scss';
 import useWindowSize from 'hooks/useWindowSize';
 import { SquareWrapper } from 'components/Square/Square.styles';
 import { Props, connector } from './ChessBoard.types';
+import { useWorker } from "@koale/useworker";
 
 
-const ChessBoard: React.FC<Props> = (props: Props) => {
-  const [squareHeight, setSquareHeight] = useState(100);
+const ChessBoard: React.FC<Props> = ({ boardModel, solutionPath }: Props) => {
+
+  const [squareHeight, setSquareHeight] = React.useState(100);
   const [windowWidth] = useWindowSize();
-  const squareRef = useRef(document.createElement("div"));
-  const boardModel = props.boardModel;
-  const solutionPath = props.solutionPath;
-  useEffect(() => {
+  const squareRef = React.useRef(document.createElement("div"));
+
+  React.useEffect(() => {
     if (!!squareRef && !!squareRef.current) {
       const width = squareRef.current.offsetWidth;
       setSquareHeight(width);

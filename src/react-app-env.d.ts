@@ -1,2 +1,2 @@
 /// <reference types="react-scripts" />
-SKIP_PREFLIGHT_CHECK = false
+SKIP_PREFLIGHT_CHECK = true

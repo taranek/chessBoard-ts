@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import * as React from 'react';
 import Cords from 'domain/Cords';
 import 'components/Square/Square.scss'
 import knight from 'assets/knight.svg'
@@ -60,7 +60,7 @@ const Square: React.FC<Props> = (props: Props) => {
   const belongsToSolution = belongsToSolutionPath(props.solutionPath, props.cords);
   const isEven = (cords.x + cords.y) % 2 === 0;
   const stylingClass = isEven ? 'square__even' : 'square__odd';
-  const [renderKnight, toggleRenderKnight] = useState((isEqual(props.start, cords) || (isEqual(props.end, cords))) && props.positionListener !== null);
+  const [renderKnight, toggleRenderKnight] = React.useState((isEqual(props.start, cords) || (isEqual(props.end, cords))) && props.positionListener !== null);
 
   const toggleStartPosition = () => {
     if (startPosition === null || isEqual(startPosition, cords)) {

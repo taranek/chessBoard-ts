@@ -1,16 +1,19 @@
 import Graph from "./Graph";
-import Cords from "./Cords";
 import TreeNode from "./TreeNode";
 import ChessBoardModel from "./ChessBoardModel";
 import Knight from "./Knight";
 
-
-export default async function setup(chessBoardSize: number, start: Cords, end: Cords, knight: Knight): Promise<TreeNode[]> {
+type Cords = {
+  x: number;
+  y: number;
+}
+// @ts-ignore
+export default function setup(chessBoardSize: number, start: Cords, end: Cords, knight: Knight): TreeNode[] {
 
   let chessBoardModel = new ChessBoardModel(chessBoardSize);
   chessBoardModel.graph.setStart(start);
   chessBoardModel.graph.setEnd(end);
-  return await BFS(chessBoardModel, knight);
+  return BFS(chessBoardModel, knight);
 }
 
 const makeAllMoves = (knight: Knight, fromNode: TreeNode, chessBoard: ChessBoardModel): void => {
@@ -38,14 +41,14 @@ const makeMove = (moveCords: Cords, fromNode: TreeNode, chessBoard: ChessBoardMo
   let fitVertically = destinationY <= chessSize - 1 && destinationY >= 0;
 
   if (fitHorizontally && fitVertically) {
-    let newNode = graph.getNode(new Cords(destinationX, destinationY));
+    let newNode = graph.getNode({ x: destinationX, y: destinationY });
     if (!newNode.searched) {
       fromNode.addEdge(newNode);
     }
   }
 }
 
-const BFS = async (chessBoard: ChessBoardModel, knight: Knight): Promise<TreeNode[]> => {
+const BFS = (chessBoard: ChessBoardModel, knight: Knight): TreeNode[] => {
   let queue = [];
   let end = chessBoard.graph.end;
   let start = chessBoard.graph.start;

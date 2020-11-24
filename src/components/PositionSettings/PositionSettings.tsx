@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import 'components/Square/Square.scss'
 import { PositionType } from 'store/system/types';
 import 'components/PositionSettings/PositionSettings.scss';

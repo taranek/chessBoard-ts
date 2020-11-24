@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import 'components/Square/Square.scss'
 import 'components/PositionSettings/PositionSettings.scss';
 import { Props, connector } from './KnightSettings.types';
