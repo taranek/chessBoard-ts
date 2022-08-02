@@ -1,5 +1,10 @@
+## Note
+This project is not maintained anymore - I just did a tech stack update (Aug 2022)
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
 ## Demo
+
 Test env:
 https://taranekchessknight.azurewebsites.net/
 
