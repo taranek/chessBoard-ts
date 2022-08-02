@@ -15,7 +15,8 @@ const App: React.FC<IProps> = (props) => {
     <Provider store={props.store}>
       <div className="App">
         <h1>ChessKnight</h1>
-        <span>Find the shortest path</span>
+        <span>Find the shortest path from one position to another</span>
+        <span>Please set start and end position. Click "Solve it" to see the shortest knight path between these two points.</span>
         <main>
           <div className="main-container">
             <BoardSettingsPanel></BoardSettingsPanel>
