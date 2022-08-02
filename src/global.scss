@@ -1,30 +1,31 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto+Slab|Open+Sans:400italic,700italic,400,700);
 
 // Font Variables
-$roboto-slab: 'Roboto Slab', serif;   
-$open-sans: 'Open Sans', sans-serif;
+$roboto-slab: "Roboto Slab", serif;
+$open-sans: "Open Sans", sans-serif;
 
-$primaryColor: #4C51C6;
-$secondaryColor: #FD830D;
+$primaryColor: #4c51c6;
+$secondaryColor: #fd830d;
 $accentColor: #607ff2;
 $lightAccentColor: #8da3f3;
 $lightColor: #e9f4ff;
 $secondaryLight: rgb(255, 196, 142);
-$white:  #fafdff;
-$grey:   #a5a5a5;
-html,body{
-  background-color:$lightColor;
-  font-family:$open-sans;
+$white: #fafdff;
+$grey: #a5a5a5;
+html,
+body {
+  background-color: $lightColor;
+  font-family: $open-sans;
 }
 h1 {
   color: $primaryColor;
 }
-.App{
-  display:flex;
+.App {
+  display: flex;
   text-align: center;
   flex-direction: column;
 }
-button{
+button {
   display: block;
   color: $white;
   // margin: 0.5em;
@@ -37,43 +38,47 @@ button{
   transition: box-shadow, 0.3s;
   background-size: 100% 202%;
 }
-button:hover{
+button:hover {
   background-position: 0 100%;
   cursor: pointer;
 }
-.btn-primary{
+.btn-primary {
   text-shadow: 0px 0px 2em $lightAccentColor;
   box-shadow: 0px 0px 0.2em $lightAccentColor;
   border: 2px solid $primaryColor;
-	background-image: linear-gradient(to bottom, $lightAccentColor 50%, $white 50%);
+  background-image: linear-gradient(
+    to bottom,
+    $lightAccentColor 50%,
+    $white 50%
+  );
 }
-.btn-primary:hover{
+.btn-primary:hover {
   color: $primaryColor;
   box-shadow: 0px 0px 0.7em $lightAccentColor;
 }
-button:disabled{
-  color:$white;
+button:disabled {
+  color: $white;
   background: $grey;
   background-color: $grey;
   border: 2px solid $grey;
 }
-button:disabled:hover{
+button:disabled:hover {
   border: 2px solid $grey;
-  color:$white;
+  color: $white;
   background: $grey;
   background-color: $grey;
 }
-.btn-secondary{
+.btn-secondary {
   text-shadow: 0px 0px 2em $secondaryLight;
   box-shadow: 0px 0px 0.2em $secondaryLight;
   border: 2px solid $secondaryColor;
-	background-image: linear-gradient(to bottom, $secondaryLight 50%, $white 50%);
+  background-image: linear-gradient(to bottom, $secondaryLight 50%, $white 50%);
 }
-.btn-secondary:hover{
+.btn-secondary:hover {
   color: $secondaryColor;
   box-shadow: 0px 0px 0.7em $secondaryLight;
 }
-input{
+input {
   display: block;
   border-radius: 10px;
   border: 2px solid $primaryColor;
@@ -84,32 +89,34 @@ input{
   font-size: 1.2em;
   background: $white;
   color: $primaryColor;
-  height:2em;
-  width:4em;
+  height: 2em;
+  width: 4em;
   box-shadow: 0px 0px 0.2em $lightAccentColor;
 }
-.settings-container{
+.settings-container {
   border: 3px solid $primaryColor;
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0px 0px 10px $lightAccentColor;
-  background-color:$white;
-  margin:15px auto;
-  display:flex;
-  width:100%;
-  flex-wrap:wrap;
+  background-color: $white;
+  margin: 15px auto;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
   padding: 1em;
-  color:$primaryColor;
-  font-weight: bold;
+  color: $primaryColor;
   text-align: center;
-  display:flex;
-  justify-content:space-evenly;
+  display: flex;
+  justify-content: space-evenly;
   align-items: center;
   box-sizing: border-box;
+  & > *:not(:last-child) {
+    margin-right: 8px;
+  }
 }
-.main-container{
-   margin:10px;
-   display:flex;
-   flex-direction:row;
-   justify-content:space-evenly;
+.main-container {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }

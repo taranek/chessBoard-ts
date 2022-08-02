@@ -1,9 +1,8 @@
-import React from 'react';
-import 'components/Square/Square.scss'
-import { PositionType } from 'store/system/types';
-import 'components/PositionSettings/PositionSettings.scss';
-import { Props, connector } from './PositionSettings.types';
-
+import React from "react";
+import "components/Square/Square.scss";
+import { PositionType } from "store/system/types";
+import "components/PositionSettings/PositionSettings.scss";
+import { Props, connector } from "./PositionSettings.types";
 
 const PositionSettings: React.FC<Props> = (props: Props) => {
   const position = props.position;
@@ -17,21 +16,32 @@ const PositionSettings: React.FC<Props> = (props: Props) => {
       props.resetEndPosition();
     }
     props.updatePositionListener(positionType);
-  }
+  };
 
   const renderPositionInfo = () => {
     if (position === null) {
-      return (<span key={name}> No {name} position set.</span>)
+      return <span key={name}> No {name} position set.</span>;
     }
-    return (<span key={name}>Position {name} x:{position.x}, y:{position.y}</span>)
-
-  }
+    return (
+      <span key={name}>
+        <b>{name}</b>&nbsp;Position x:{position.x}, y:{position.y}
+      </span>
+    );
+  };
 
   return (
-    <div className='settings-container'>
+    <div className="settings-container">
       {renderPositionInfo()}
-      <button type='button' className="btn-primary" disabled={!props.enableSetter} onClick={setListener}> Set {name} position</button>
+      <button
+        type="button"
+        className="btn-primary"
+        disabled={!props.enableSetter}
+        onClick={setListener}
+      >
+        {" "}
+        Set {name} position
+      </button>
     </div>
-  )
-}
+  );
+};
 export default connector(PositionSettings);
