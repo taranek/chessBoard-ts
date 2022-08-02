@@ -1,5 +1,5 @@
 ## Note
-This project is not maintained anymore - I just did a tech stack update (Aug 2022)
+This project is not maintained anymore - I just did a tech stack update of the code I wrote a few years ago - most of the code needs to be refactored. (Aug 2022)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
