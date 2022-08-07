@@ -4,16 +4,23 @@ import TreeNode from "./TreeNode";
 import ChessBoardModel from "./ChessBoardModel";
 import Knight from "./Knight";
 
-
-export default async function setup(chessBoardSize: number, start: Cords, end: Cords, knight: Knight): Promise<TreeNode[]> {
-
+export default function setup(
+  chessBoardSize: number,
+  start: Cords,
+  end: Cords,
+  knight: Knight
+): TreeNode[] {
   let chessBoardModel = new ChessBoardModel(chessBoardSize);
   chessBoardModel.graph.setStart(start);
   chessBoardModel.graph.setEnd(end);
-  return await BFS(chessBoardModel, knight);
+  return BFS(chessBoardModel, knight);
 }
 
-const makeAllMoves = (knight: Knight, fromNode: TreeNode, chessBoard: ChessBoardModel): void => {
+const makeAllMoves = (
+  knight: Knight,
+  fromNode: TreeNode,
+  chessBoard: ChessBoardModel
+): void => {
   makeMove({ x: knight.xMove, y: knight.yMove }, fromNode, chessBoard);
   makeMove({ x: -knight.xMove, y: knight.yMove }, fromNode, chessBoard);
   makeMove({ x: knight.xMove, y: -knight.yMove }, fromNode, chessBoard);
@@ -23,11 +30,13 @@ const makeAllMoves = (knight: Knight, fromNode: TreeNode, chessBoard: ChessBoard
   makeMove({ x: -knight.yMove, y: knight.xMove }, fromNode, chessBoard);
   makeMove({ x: knight.yMove, y: -knight.xMove }, fromNode, chessBoard);
   makeMove({ x: -knight.yMove, y: -knight.xMove }, fromNode, chessBoard);
+};
 
-}
-
-const makeMove = (moveCords: Cords, fromNode: TreeNode, chessBoard: ChessBoardModel): void => {
-
+const makeMove = (
+  moveCords: Cords,
+  fromNode: TreeNode,
+  chessBoard: ChessBoardModel
+): void => {
   let chessSize = chessBoard.size;
   let graph = chessBoard.graph;
   let cords = fromNode.cords;
@@ -43,9 +52,9 @@ const makeMove = (moveCords: Cords, fromNode: TreeNode, chessBoard: ChessBoardMo
       fromNode.addEdge(newNode);
     }
   }
-}
+};
 
-const BFS = async (chessBoard: ChessBoardModel, knight: Knight): Promise<TreeNode[]> => {
+const BFS = (chessBoard: ChessBoardModel, knight: Knight): TreeNode[] => {
   let queue = [];
   let end = chessBoard.graph.end;
   let start = chessBoard.graph.start;
@@ -55,19 +64,23 @@ const BFS = async (chessBoard: ChessBoardModel, knight: Knight): Promise<TreeNod
     let node = queue.shift();
     node.searched = true;
     if (node.cords === end.cords) {
-      console.log('found!', node);
-      console.log('With path:', node.getPath());
+      console.log("found!", node);
+      console.log("With path:", node.getPath());
       return node.getPath();
     }
-    makeAllMoves(knight, node, chessBoard)
+    makeAllMoves(knight, node, chessBoard);
     // console.log('Searching node:', node);
     traverseEdges(node, chessBoard.graph, queue);
   }
-  console.log('Couldnt find a proper path')
+  console.log("Couldnt find a proper path");
   return [];
-}
+};
 
-const traverseEdges = (node: TreeNode, graph: Graph, queue: TreeNode[]): void => {
+const traverseEdges = (
+  node: TreeNode,
+  graph: Graph,
+  queue: TreeNode[]
+): void => {
   for (let edge of node.edges) {
     let n = graph.getNode(edge.cords);
     if (!n.searched) {
@@ -75,4 +88,4 @@ const traverseEdges = (node: TreeNode, graph: Graph, queue: TreeNode[]): void =>
       queue.push(n);
     }
   }
-}
+};

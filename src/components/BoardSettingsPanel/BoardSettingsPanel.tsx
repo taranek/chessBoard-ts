@@ -8,8 +8,10 @@ import Knight from "domain/Knight";
 import KnightSettings from "components/KnightSettings/KnightSettings";
 import { Form, Field } from "react-final-form";
 import { connector, Props } from "./BoardsSettingsPanel.types";
+import TreeNode from "../../domain/TreeNode";
+const piWorker = new Worker(new URL("../../worker.js", import.meta.url));
 
-const ProvideSolution = (
+export const ProvideSolution = (
   chessBoardSize: number,
   start: Nullable<Cords>,
   end: Nullable<Cords>,
@@ -47,19 +49,21 @@ const BoardSettingsPanel: React.FC<Props> = ({
   updateBoard,
   ...rest
 }: Props) => {
-  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  React.useEffect(() => {
+    piWorker.onmessage = (event) => {
+      console.log("got a message from worker: ", event);
+      updateSolutionPath(event.data.map((d: TreeNode) => d.cords));
+    };
+  }, [updateSolutionPath]);
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    let solutionPath = await ProvideSolution(
-      boardModel.size,
+    piWorker.postMessage({
+      size: boardModel.size,
       start,
       end,
-      knight
-    );
-    let result: Cords[] = [];
-    solutionPath.forEach((x) => {
-      result.push(x.cords);
+      knight,
     });
-    updateSolutionPath(result);
   };
   return (
     <Form
